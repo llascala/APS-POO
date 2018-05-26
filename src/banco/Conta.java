@@ -1,87 +1,81 @@
 package banco;
 
-import java.util.ArrayList;
+public class Conta {
 
-public abstract class Conta {
-	
-	private ArrayList<Conta> contasArray = new ArrayList<>();
-	
-	private int numeroConta;
-	private String nomeCliente;
-	private int CPF;
-	protected double Saldo;
-	
-	//Construtores
-	
-	public Conta() {}
-	
-	public Conta(int numeroConta, String nomeCliente, int CPF) {
-		this.numeroConta = numeroConta;
-		this.nomeCliente = nomeCliente;
-		this.CPF = CPF;
-	}
-	
-	// Get's e Set's
+    private int numeroConta;
+    private String nomeCliente;
+    private int CPF;
+    protected double Saldo;
 
-	public int getNumeroConta() {
-		return numeroConta;
-	}
+    //Construtores
+    public Conta() {
+    }
 
-	private void setNumeroConta(int numeroConta) {
-		this.numeroConta = numeroConta;
-	}
+    public Conta(int numeroConta, String nomeCliente, int CPF) {
+        this.numeroConta = numeroConta;
+        this.nomeCliente = nomeCliente;
+        this.CPF = CPF;
 
-	public String getNomeCliente() {
-		return nomeCliente;
-	}
+    }
 
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
-	}
+    // Get's e Set's
+    public int getNumeroConta() {
+        return numeroConta;
+    }
 
-	public int getCPF() {
-		return CPF;
-	}
+    protected void setNumeroConta(int numeroConta) {
+        this.numeroConta = numeroConta;
+    }
 
-	private void setCPF(int cPF) {
-		CPF = cPF;
-	}
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
 
-	public double getSaldo() {
-		return Saldo;
-	}
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
 
-	private void setSaldo(double saldo) {
-		Saldo = saldo;
-	}
-	
-	//Métodos
-	
-	public boolean sacar(int numeroConta ,double valorSacado) {
-		for (int i = 0; i < contasArray.size();i++) {
-			if (contasArray.get(i).getNumeroConta() == numeroConta) {
-				Saldo -= valorSacado;
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean depositar(int numeroConta ,double valorDepositado) {
-		for (int i = 0; i < contasArray.size();i++) {
-			if (contasArray.get(i).getNumeroConta() == numeroConta) {
-				Saldo += valorDepositado;
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public String Imprimir() {
-		return  "Nome do Cliente: " + nomeCliente +
-				"\nNumero da Conta: " + numeroConta +
-				"\nCPF: " + CPF +
-				"\nSaldo: " + Saldo;
-	}
-	
+    public int getCPF() {
+        return CPF;
+    }
+
+    protected void setCPF(int cPF) {
+        CPF = cPF;
+    }
+
+    public double getSaldo() {
+        return Saldo;
+    }
+
+    protected void setSaldo(double saldo) {
+        Saldo = saldo;
+    }
+
+    //Métodos
+    public boolean sacar(int numeroConta, double valorSacado) {
+        if (valorSacado > 0) {
+            Saldo -= valorSacado;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean depositar(double valorDepositado) {
+        if (valorDepositado > 0) {
+            Saldo += valorDepositado;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String Imprimir() {
+        return "\nNome do Cliente: " + nomeCliente
+                + "\nNumero da Conta: " + numeroConta
+                + "\nCPF: " + CPF
+                + "\nSaldo: " + Saldo + 
+                "\n***************\n";
+        
+    }
 }
